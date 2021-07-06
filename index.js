@@ -1,5 +1,18 @@
 const cheerio = require('cheerio');
 const request = require('request-promise');
+const express = require('express');
+const app = express();
+
+
+//  middlewares
+app.use(express.json());
+app.use(express.urlencoded({extended:false}));
+
+//  routes
+app.use(require('./routes/index'));
+
+app.listen(3000);
+console.log('Server on port 3000');
 
 async function init()
 {
@@ -19,7 +32,7 @@ async function init()
     const table = $('tr').each((i, el) => {
         const llenado = $(el).find('td').each((j, la) => {
             if (j == 0){fecha_local.push($(la).text())}
-            if (j == 1){fecha_UTC.push($(la).text())}
+            if (j == 1){fecha_UTC.push($(la).text())}  
             if (j == 2){latitud.push($(la).text())}
             if (j == 3){longitud.push($(la).text())}
             if (j == 4){profundidad.push($(la).text())}
@@ -30,7 +43,7 @@ async function init()
     });
     const largo = fecha_local.length;
     for (var i = 0; i < largo; i++){
-        console.log(agencia[i]);
+        console.log(fecha_local[i]);
     }
 }
 
