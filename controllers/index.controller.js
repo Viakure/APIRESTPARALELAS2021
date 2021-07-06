@@ -17,7 +17,8 @@ const getReportes = async (req,res) => {
 };
 
 const setReportes = async (req,res) => {
-
+    console.log(req.body);
+    res.send('Registro creado con éxito');
 }
 
 
