@@ -34,6 +34,7 @@ CREATE UNIQUE INDEX ON earthquakes(UPPER(TRIM(both from id)));
 --
 -- Comando para insertar datos de prueba
 --
-
+-- \c earthquakes para conectarse a la base de datos
 -- \dt para ver las tablas
 -- ALTER USER postgres PASSWORD '1234';
+-- Para iniciar postgres: sudo -u postgres psql

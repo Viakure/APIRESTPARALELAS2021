@@ -12,26 +12,38 @@ async function recall (obj)
     //         ---> recall(obj) 
     // 
     //
-    let options = 
+    console.log('se ejecutó la función recall');
+    const largo = obj[0].length;
+    for (var i = 0; i<largo; i++)
     {
-        method: 'POST',
-        uri: 'http://localhost:3000/grupo-w/earthquakes',
-        body: {
-            // DATOS ACA
-            // id_registro = obj[0][i]
-            // fecha_local = obj[0][i]
-            // ....
-        },
-        json: true,
-    };
-    request(options)
-    .then(function(parsedBody){
+        let options = 
+        {
+            method: 'POST',
+            uri: 'http://localhost:3000/grupo-w/earthquakes',
+            body: 
+            {
+                // DATOS ACA
+                id: obj[0][i],
+                fecha_local: obj[1][i],
+                latitud: obj[2][i],
+                longitud: obj[3][i],
+                profundidad: obj[4][i],
+                magnitud: obj[5][i],
+                referencia_geografica: obj[6][i],
+            },
+            json: true,
+        };
+        request(options)
+        .then(function(parsedBody)
+        {
         console.log('Registro creado', parsedBody)
-    })
-    .catch(function(error){
-        console.log('eror inesperado UwU', error)
-    })
-};
+        })
+        .catch(function(error)
+        {
+            console.log('eror inesperado UwU', error)
+        })
+    };
+}
 
 
 //  middlewares
@@ -47,12 +59,10 @@ console.log('Server on port 3000');
 
 async function init()
 {
-    let aux = await webScraping();
-    console.log(aux[5][14])
-
-    /* setInterval(async() => {
-        
-    }, 5000) */
+    let obj = await webScraping();
+    recall(obj);
+    setInterval(async() => {}, 3000);
+    console.log('se ejecutó la función init');
 }
 
 init();

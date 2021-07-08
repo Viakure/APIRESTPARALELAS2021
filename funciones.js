@@ -9,6 +9,7 @@ async function webScraping(){
         uri: 'http://www.sismologia.cl/links/ultimos_sismos.html',
         transform: body => cheerio.load(body)
     });
+    id = [];
     fecha_local = [];
     latitud = [];
     longitud = [];
@@ -17,7 +18,7 @@ async function webScraping(){
     referencia_geografica = [];
     const table = $('tr').each((i, el) => {
         const llenado = $(el).find('td').each((j, la) => {
-            if (j == 0){fecha_local.push($(la).text())}
+            if (j == 0){fecha_local.push($(la).text()),id.push($(la).text())}
             if (j == 2){latitud.push($(la).text())}
             if (j == 3){longitud.push($(la).text())}
             if (j == 4){profundidad.push(parseInt($(la).text(),10))}
@@ -25,7 +26,8 @@ async function webScraping(){
             if (j == 7){referencia_geografica.push($(la).text())} 
         });
     });
-    const data = [fecha_local, latitud, longitud, profundidad, magnitud, referencia_geografica];
+    console.log('se ejecutó la función webScraping');
+    const data = [id,fecha_local, latitud, longitud, profundidad, magnitud, referencia_geografica];
     return data;
 }
 
