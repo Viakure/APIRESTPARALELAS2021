@@ -30,7 +30,6 @@ const postReportes = async (req,res) => {
     profundidad = [];
     magnitud = [];
     referencia_geografica = [];
-
     const table = $('tr').each((i, el) => {
         const llenado = $(el).find('td').each((j, la) => {
             if (j == 0){fecha_local.push($(la).text())}
@@ -48,8 +47,38 @@ const postReportes = async (req,res) => {
     }
 }
 
+const postPrueba = async (req,res) => {
+    const $ = await request({
+        uri: 'http://www.sismologia.cl/links/ultimos_sismos.html',
+        transform: body => cheerio.load(body)
+    });
+    const {fecha_local, latitud, longitud, profundidad, magnitud, referencia_geografica} = req.body
+    try{
+        const response = await pool.query('INSERT INTO earthquakes (id, fecha_local, latitud, longitud, profundidad, magnitud, referencia_geografica) VALUES ($1, $2 ,$3 ,$4 ,$5 ,$6 , $7)' , [fecha_local, fecha_local,latitud,longitud,profundidad,magnitud,referencia_geografica]);
+    
+        if(response){
+            res.json({
+                message: 'creado con exito'
+            })
+        }    
+    }
+    catch(error){
+        console.log(error);
+        res.json({
+            message: error
+        })
+    }    
+    
+    /* const largo = fecha_local.length;
+    for (var i = 0; i < largo; i++){
+        console.log(magnitud[i]);
+        const response = await pool.query('INSERT INTO earthquakes (id, fecha_local, latitud, longitud, profundidad, magnitud, referencia_geografica) VALUES ($1, $2 ,$3 ,$4 ,$5 ,$6 , $7)' , [fecha_local[i], fecha_local[i],latitud[i],longitud[i],profundidad[i],magnitud[i],referencia_geografica[i]]);
+    } */
+}
+
 
 module.exports = {
     getReportes,
-    postReportes
+    postReportes,
+    postPrueba
 }

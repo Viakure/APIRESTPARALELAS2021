@@ -1,20 +1,34 @@
+const express = require('express');
 const request = require('request-promise');
+const cheerio = require('cheerio');
 
+const funciones = express()
 
-async function recall () 
-{
-    let options = 
-    {
-        method: 'POST',
-        uri: 'http://localhost:3000/grupo-w/earthquakes',
-        json: true,
-    };
-    request(options)
-    .then(function(parsedBody){
-        console.log('Registro creado', parsedBody)
-    })
-    .catch(function(error){
-        console.log('eror inesperado UwU', error)
-    })
+async function webScraping(){
+    const $ = await request({
+        uri: 'http://www.sismologia.cl/links/ultimos_sismos.html',
+        transform: body => cheerio.load(body)
+    });
+    fecha_local = [];
+    latitud = [];
+    longitud = [];
+    profundidad = [];
+    magnitud = [];
+    referencia_geografica = [];
+    const table = $('tr').each((i, el) => {
+        const llenado = $(el).find('td').each((j, la) => {
+            if (j == 0){fecha_local.push($(la).text())}
+            if (j == 2){latitud.push($(la).text())}
+            if (j == 3){longitud.push($(la).text())}
+            if (j == 4){profundidad.push(parseInt($(la).text(),10))}
+            if (j == 5){magnitud.push(parseFloat($(la).text()))}
+            if (j == 7){referencia_geografica.push($(la).text())} 
+        });
+    });
+    const data = [fecha_local, latitud, longitud, profundidad, magnitud, referencia_geografica];
+    return data;
+}
+
+module.exports ={ 
+    webScraping
 };
-export {recall};
