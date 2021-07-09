@@ -56,7 +56,7 @@ const postPrueba = async (req,res) => {
     const existencia = await pool.query('select id from earthquakes where id = $1',[id]);
     console.log('se ejecutó postPrueba');
     if (existencia.rowCount==1)
-    {   /*console.log('YA EXISTE ID');*/}
+    {   console.log('YA EXISTE ID');}
     else{
     try{
         const response = await pool.query('INSERT INTO earthquakes (id, fecha_local, latitud, longitud, profundidad, magnitud, referencia_geografica) VALUES ($1, $2 ,$3 ,$4 ,$5 ,$6 , $7)' , [id, fecha_local,latitud,longitud,profundidad,magnitud,referencia_geografica]);
