@@ -15,7 +15,7 @@ const pool = new Pool({
 });
 
 const getReportes = async (req,res) => {
-    const response = await pool.query('SELECT * FROM earthquakes;');
+    const response = await pool.query('SELECT * FROM earthquakes ORDER BY fecha_local DESC;');
     res.status(200).json(response.rows);
 };
 
