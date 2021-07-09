@@ -59,10 +59,12 @@ console.log('Server on port 3000');
 
 async function init()
 {
-    let obj = await webScraping();
-    recall(obj);
-    setInterval(async() => {}, 3000);
-    console.log('se ejecutó la función init');
+    var func = async function init(){
+        let obj = await webScraping();
+        recall(obj);
+        console.log('se ejecutó la función init');
+    };
+    setInterval(func,10000);
 }
 
 init();
