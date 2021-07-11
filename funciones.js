@@ -32,5 +32,7 @@ async function webScraping(){
 }
 
 module.exports ={ 
-    webScraping
+    webScraping,
+    token_secreto: 'mi_token',
+    usuario: 'nico',
 };

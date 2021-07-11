@@ -4,6 +4,7 @@ const express = require('express');
 const { Pool } = require('pg/lib');
 const app = express();
 const {webScraping} = require('./funciones');
+const { crear_token } = require('./Services/index');
 
 async function recall (obj) 
 {   
@@ -65,6 +66,7 @@ async function init()
         console.log('se ejecutó la función init');
     };
     setInterval(func,10000);
+    crear_token();
 }
 
 init();
