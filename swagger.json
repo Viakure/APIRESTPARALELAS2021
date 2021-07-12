@@ -1,0 +1,46 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "version" : "1.0.0",
+        "title": "titulo",
+        "description": "description",
+        "contact": {
+            "name": "Nicolas"
+        },
+        "servers": ["http://localhost:3000"]
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    },
+    "paths": {
+        "/grupo-w/earthquakes": {
+            "get": {
+                "security": [{
+                    "bearerAuth": []
+                }],
+                "summary": "Funcion entrega lista de sismos",
+                "description": "Funcion la cual entrega un listado de los sismos almacenados en la base de datos",
+                "responses": {
+                    "200": {
+                        "description": "Todo salio bien"
+                    },
+                    "401": {
+                        "description": "No tienes la autorizacion"
+                    },
+                    "403": {
+                        "description": "No se inicio sesion"
+                    },
+                    "500": {
+                        "description": "A ocurrido un error inesperado"
+                    }
+                }
+            }
+        }
+    }
+}

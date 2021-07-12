@@ -5,6 +5,8 @@ const { Pool } = require('pg/lib');
 const app = express();
 const {webScraping} = require('./funciones');
 const { crear_token } = require('./Services/index');
+const swagger = require('./swagger.json');
+const swaggerUi = require('swagger-ui-express');
 
 async function recall (obj) 
 {   
@@ -67,6 +69,8 @@ async function init()
     };
     setInterval(func,10000);
     crear_token();
+    app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swagger))
+    console.log(swagger);
 }
 
 init();

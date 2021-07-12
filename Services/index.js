@@ -11,22 +11,38 @@ async function crear_token(req, res, next) {
 }
 
 function verificar_token(req, res, next) {
-    const bearer_header = req.headers['authorization'];
-    const bearer = bearer_header.split(" ");
-    const bearerToken = bearer[1];
-    const token = bearerToken;
-    jwt.verify(token, funciones.token_secreto, function (err) {
-        try {
-            if (err) {
-                res.status(401).send({ message: 'No tienes autorizacion' })
-            }
-            const decodificado = jwt.verify(token, funciones.token_secreto);
-            req.user = decodificado.user;
-            next();
-        } catch(err) {
-            console.log('TRYCATCH---------------------------->',err)
+    try {
+        const bearer_header = req.headers['authorization'];
+        if (typeof bearer_header != 'undefined') {
+            const bearer = bearer_header.split(" ");
+            const bearerToken = bearer[1];
+            const token = bearerToken;
+            jwt.verify(token, funciones.token_secreto, function (err) {
+
+                if (err) {
+                    var date = new Date()
+                    date = date.toLocaleString('es-CL')
+                    res.status(401).json({ message: 'No tienes autorizacion para acceder a la informacion', date: date})
+                }
+                else{
+                const decodificado = jwt.verify(token, funciones.token_secreto);
+                req.user = decodificado.user;
+                next();
+                }
+            })
         }
-    })
+        else {
+            var date = new Date()
+            date = date.toLocaleString('es-CL')
+            res.status(403).json({ message: "no ha iniciado sesion", date: date})
+        }
+    }
+    catch(err){
+        var date = new Date()
+        date = date.toLocaleString('es-CL')
+        res.status(500).json({ message: "A ocurrido un error inesperado", date: date})
+    }
+
 }
 
 module.exports = { crear_token, verificar_token };
