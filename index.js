@@ -9,12 +9,7 @@ const swagger = require('./swagger.json');
 const swaggerUi = require('swagger-ui-express');
 
 async function recall (obj) 
-{   
-    // ESTA FUNCION DEBE ITERAR CADA REGISTRO QUE SE ENCUENTRE EN EL PARAMETRO obj
-    // EN INIT ---> let obj = await webScraping();
-    //         ---> recall(obj) 
-    // 
-    //
+{  
     console.log('se ejecutó la función recall');
     const largo = obj[0].length;
     for (var i = 0; i<largo; i++)
@@ -25,7 +20,6 @@ async function recall (obj)
             uri: 'http://localhost:3000/grupo-w/earthquakes',
             body: 
             {
-                // DATOS ACA
                 id: obj[0][i],
                 fecha_local: obj[1][i],
                 latitud: obj[2][i],
@@ -43,7 +37,7 @@ async function recall (obj)
         })
         .catch(function(error)
         {
-            console.log('eror inesperado UwU', error)
+            console.log('Error inesperado', error)
         })
     };
 }
@@ -62,12 +56,15 @@ console.log('Server on port 3000');
 
 async function init()
 {
+    let obj = await webScraping();
+    recall(obj);
+    console.log('se ejecutó la función init primera vez');
     var func = async function init(){
         let obj = await webScraping();
         recall(obj);
-        console.log('se ejecutó la función init');
+        console.log('se ejecutó la función init 30min');
     };
-    setInterval(func,10000);
+    setInterval(func,1800000);
     crear_token();
     app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swagger))
     console.log(swagger);

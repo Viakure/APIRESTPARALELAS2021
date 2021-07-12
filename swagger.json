@@ -5,7 +5,7 @@
         "title": "titulo",
         "description": "description",
         "contact": {
-            "name": "Nicolas"
+            "name": "Grupo-w: Nicolas Ipinza // Ian Poveda"
         },
         "servers": ["http://localhost:3000"]
     },
@@ -31,13 +31,13 @@
                         "description": "Todo salio bien"
                     },
                     "401": {
-                        "description": "No tienes la autorizacion"
+                        "description": "No tienes autorizacion"
                     },
                     "403": {
                         "description": "No se inicio sesion"
                     },
                     "500": {
-                        "description": "A ocurrido un error inesperado"
+                        "description": "Ha ocurrido un error inesperado"
                     }
                 }
             }

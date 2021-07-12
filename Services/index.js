@@ -34,13 +34,13 @@ function verificar_token(req, res, next) {
         else {
             var date = new Date()
             date = date.toLocaleString('es-CL')
-            res.status(403).json({ message: "no ha iniciado sesion", date: date})
+            res.status(403).json({ message: "No ha iniciado sesion", date: date})
         }
     }
     catch(err){
         var date = new Date()
         date = date.toLocaleString('es-CL')
-        res.status(500).json({ message: "A ocurrido un error inesperado", date: date})
+        res.status(500).json({ message: "Ha ocurrido un error inesperado", date: date})
     }
 
 }
