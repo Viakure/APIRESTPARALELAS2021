@@ -70,11 +70,11 @@ sudo apt-get install insomnia
 
 insomnia
 ```
-  _Para ejecutar insomnia, simplemente se debe escribir insomnia en una terminal_
+  _Para ejecutar insomnia, simplemente se debe escribir insomnia en una terminal._
   _Posteriormente, en insomnia, seleccionaremos la opción New Request (Ctrl+N), le asignamos un nombre a gusto y damos a Create._
-  _Luego, en la barra de direcciones que se ubica en la zona superior del software, escribiremos la ruta http://localhost:3000/grupo-w/earthquakes seleccionando el método GET_
+  _Luego, en la barra de direcciones que se ubica en la zona superior del software, escribiremos la ruta http://localhost:3000/grupo-w/earthquakes seleccionando el método GET._
   _Si presionamos SEND, nos dirá que no hemos iniciado sesión. Para ello, ocuparemos el token copiado anteriormente. Nos ubicaremos en la pestaña AUTH y clickearemos el icono de despliegue, aquí se debe escoger la opción Bearer Token. Luego en el formulario que dice Token, pegaremos el token antes copiado, y nuevamente presionaremos SEND._
-  _Finalmente se nos despliegan los datos de los sismos_
+  _Finalmente se nos despliegan los datos de los sismos._
 
 ## Construido con 🛠️
 
