@@ -30,14 +30,14 @@ sudo apt install postgresql postgresql-contrib
 ```
 sudo -u postgres psql
 ```
-  _Posteriormente, se procede a crear la base de datos, siguiendo los comandos a continuación (uno por uno hasta cada ';')_
+  _Posteriormente, se procede a crear la base de datos, siguiendo los comandos a continuación (uno por uno separado por guiones --)_
 ```
 CREATE DATABASE EARTHQUAKES;
-
+--
 \c earthquakes
-
+--
 DROP TABLE IF EXISTS earthquakes CASCADE;
-
+--
 CREATE TABLE earthquakes(
     id varchar(255) NOT NULL PRIMARY KEY,
     fecha_local timestamp with time zone NOT NULL,
@@ -47,9 +47,9 @@ CREATE TABLE earthquakes(
     magnitud double precision NOT NULL,
     referencia_geografica text collate pg_catalog."default" NOT NULL
 );
-
+--
 CREATE UNIQUE INDEX ON earthquakes(UPPER(TRIM(both from id)));
-
+--
 ALTER USER postgres PASSWORD '1234';
 ```
 _3. Ejecutar el proyecto_
