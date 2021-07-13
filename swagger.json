@@ -2,8 +2,8 @@
     "openapi": "3.0.1",
     "info": {
         "version" : "1.0.0",
-        "title": "titulo",
-        "description": "description",
+        "title": "API REST earthquakes",
+        "description": "API que almacena la informacion de los temblores en chile registrados en la pagina de sismologia.cl",
         "contact": {
             "name": "Grupo-w: Nicolas Ipinza // Ian Poveda"
         },
@@ -37,6 +37,21 @@
                         "description": "No se inicio sesion"
                     },
                     "500": {
+                        "description": "Ha ocurrido un error inesperado"
+                    }
+                }
+            },
+            "post": {
+                "security": [{
+                    "bearerAuth": []
+                }],
+                "summary": "Resumen ",
+                "description": "Explicacion",
+                "responses": {
+                    "200": {
+                        "description": "Todo salio bien"
+                    },
+                    "404": {
                         "description": "Ha ocurrido un error inesperado"
                     }
                 }

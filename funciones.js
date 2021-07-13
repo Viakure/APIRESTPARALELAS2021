@@ -106,6 +106,6 @@ async function webScraping(){
 
 module.exports ={ 
     webScraping,
-    token_secreto: 'mi_token',
-    usuario: 'nico',
+    token_secreto: 'rkpT4!H?*eH3nUQwbAbyF4&6q3EzVR',
+    usuario: 'usuario',
 };
