@@ -4,9 +4,9 @@ _API REST que se encarga de almacenar los datos de la pagina web sismologia.cl y
 ### Pre-requisitos 📋
 
 ```
-Compilador de C/C++
-Make (Builder)
-Archivo de estudiantes.csv
+PostgreSQL
+Insomnia
+
 ```
 
 ### Formato archivo .csv
@@ -36,7 +36,7 @@ _1. Clonar el repositorio del proyecto_
 git clone https://github.com/Viakure/Taller1Paralelas2021.git
 ```
 
-_2. construir el proyecto_
+_2. Instalar postgreSQL y construir la base de datos_
 
   _Se construira el proyecto con la herramienta "MAKE" utilizando el comando correspondiente._
 
@@ -54,9 +54,9 @@ C:/Users/nicolas/Downloads/T1/Taller1 C:/Users/nicolas/Documents/estudiantes.csv
 
 ## Construido con 🛠️
 
-* [C++] - El lenguaje de programacion usado
+* [JavaScript (Node.js/Express.js)] - El lenguaje de programacion usado
 * [VisualStudioCode](https://maven.apache.org/) - Editor de texto utilizado
-* [Make] - Constructor utilizado
+* [PostgreSQL] - Gestor de bases de datos utilizado
 
 ## Autores ✒️
 
