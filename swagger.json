@@ -45,8 +45,8 @@
                 "security": [{
                     "bearerAuth": []
                 }],
-                "summary": "Resumen ",
-                "description": "Explicacion",
+                "summary": "Función que inserta los datos desde la pagina hacia la base de datos",
+                "description": "Principalmente se realiza una validación de ID, que si la id a ingresar ya existe en la base de datos, no se realice nada y se pase a la siguiente, en caso contrario, se realiza la query correspondiente que realiza el insert de los datos.",
                 "responses": {
                     "200": {
                         "description": "Todo salio bien"
