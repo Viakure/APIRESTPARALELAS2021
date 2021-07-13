@@ -4,6 +4,7 @@ _API REST que se encarga de almacenar los datos de la pagina web sismologia.cl y
 ### Pre-requisitos 📋
 
 ```
+Express JS
 PostgreSQL
 Insomnia
 ```
@@ -62,6 +63,10 @@ node index.js
   _A partir de la ejecución de ese comando, se inicializa el servidor que tiene como ruta, además, por consola se despliega un token alfanumérico, se debe copiar para utilizarlo posteriormente_
 ```
 http://localhost:3000/grupo-w/earthquakes
+```
+  _En la siguiente ruta se encuentra la documentación del codigo._
+```
+http://localhost:3000/grupo-w/swagger
 ```
 _4. Visualización de los datos_
   _Para visualizar los datos, se debe instalar el software Insomnia, mediante el siguiente comando_
