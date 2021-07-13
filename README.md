@@ -8,23 +8,6 @@ PostgreSQL
 Insomnia
 ```
 
-### Formato archivo .csv
-
-  ●Los datos estan escapados usando comillas dobles.
-  ●El separador de los campos es el caracter ‘;’ (punto y coma).
-  ●La primera columna corresponde a un identificador numerico autoincremental.
-  ●Las egunda columna indica un identificador de un estudiante (un texto generico).
-  ●La tercera columna corresponde al promedio de Lengua y comunicacion.
-  ●La cuarta columna indica el promedio en Ingles.
-  ●La quinta columna indica el promedio en Matematicas.
-  ●La sexta columna indica el promedio en Ciencias Naturales.
-  ●La septima columna indica el promedio de Historia.
-  ●La octava columna corresponde al promedio de Tecnologia.
-  ●La novena columna indica el promedio de Arte.
-  ●La decima columna corresponde al promedio en Educacion Fisica
-
-El archivo .csv debe tener un formato de:
-
 ### Instalación 🔧
 
 _1. Clonar el repositorio del proyecto_
@@ -32,24 +15,66 @@ _1. Clonar el repositorio del proyecto_
   _Se puede descargar directamente desde GitHub o clonar el repositorio_
 
 ```
-git clone https://github.com/Viakure/Taller1Paralelas2021.git
+git clone https://github.com/Viakure/APIRESTPARALELAS2021.git
 ```
 
 _2. Instalar postgreSQL y construir la base de datos_
 
-  _Se construira el proyecto con la herramienta "MAKE" utilizando el comando correspondiente._
+  _En una terminal de Ubuntu, se debe instalar postgreSQL con el siguiente comando_
 
 ```
-make
+sudo apt install postgresql postgresql-contrib
 ```
+  _Luego de completar la instalación, se debe iniciar postgres mediante el comando a continuación_
+  
+```
+sudo -u postgres psql
+```
+  _Posteriormente, se procede a crear la base de datos, siguiendo los comandos a continuación (uno por uno hasta cada ';')_
+```
+CREATE DATABASE EARTHQUAKES;
 
+\c earthquakes
+
+DROP TABLE IF EXISTS earthquakes CASCADE;
+
+CREATE TABLE earthquakes(
+    id varchar(255) NOT NULL PRIMARY KEY,
+    fecha_local timestamp with time zone NOT NULL,
+    latitud double precision NOT NULL,
+    longitud double precision NOT NULL,
+    profundidad integer NOT NULL,
+    magnitud double precision NOT NULL,
+    referencia_geografica text collate pg_catalog."default" NOT NULL
+);
+
+CREATE UNIQUE INDEX ON earthquakes(UPPER(TRIM(both from id)));
+
+ALTER USER postgres PASSWORD '1234';
+```
 _3. Ejecutar el proyecto_
 
-  _Se ejecuta el programa escribiendo en consola la ruta de Taller1 y la ruta del archivo con los estudiantes en formato .CSV._
+  _Se ejecuta el proyecto situando una terminal en la ruta donde se clonó el proyecto. En cuya terminal se debe escribir lo siguiente_
 
 ```
-C:/Users/nicolas/Downloads/T1/Taller1 C:/Users/nicolas/Documents/estudiantes.csv
+node index.js
 ```
+  _A partir de la ejecución de ese comando, se inicializa el servidor que tiene como ruta, además, por consola se despliega un token alfanumérico, se debe copiar para utilizarlo posteriormente_
+```
+http://localhost:3000/grupo-w/earthquakes
+```
+_4. Visualización de los datos_
+  _Para visualizar los datos, se debe instalar el software Insomnia, mediante el siguiente comando_
+```
+sudo apt-get install insomnia
+
+insomnia
+```
+  _Para ejecutar insomnia, simplemente se debe escribir insomnia en una terminal_
+  _Posteriormente, en insomnia, seleccionaremos la opción New Request (Ctrl+N), le asignamos un nombre a gusto y damos a Create._
+  _Luego, en la barra de direcciones que se ubica en la zona superior del software, escribiremos la ruta http://localhost:3000/grupo-w/earthquakes seleccionando el método GET_
+  _Si presionamos SEND, nos dirá que no hemos iniciado sesión. Para ello, ocuparemos el token copiado anteriormente. Nos ubicaremos en la pestaña AUTH y clickearemos el icono de despliegue, aquí se debe escoger la opción Bearer Token. Luego en el formulario que dice Token, pegaremos el token antes copiado, y nuevamente presionaremos SEND._
+  _Finalmente se nos despliegan los datos de los sismos_
 
 ## Construido con 🛠️
 
