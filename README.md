@@ -6,7 +6,6 @@ _API REST que se encarga de almacenar los datos de la pagina web sismologia.cl y
 ```
 PostgreSQL
 Insomnia
-
 ```
 
 ### Formato archivo .csv
