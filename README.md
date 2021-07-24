@@ -66,7 +66,7 @@ http://localhost:3000/grupo-w/earthquakes
 ```
   _En la siguiente ruta se encuentra la documentación del codigo._
 ```
-http://localhost:3000/grupo-w/swagger
+http://localhost:3000//api-docs
 ```
 _4. Visualización de los datos_
   _Para visualizar los datos, se debe instalar el software Insomnia, mediante el siguiente comando_
