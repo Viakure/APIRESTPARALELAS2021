@@ -64,8 +64,8 @@ async function init()
         recall(obj);
         console.log('se ejecutó la función init 30min');
     };
-    setInterval(func,1800000);
-    crear_token();
+    setInterval(func,180000);
+    //crear_token();
     app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swagger))
     console.log(swagger);
 }

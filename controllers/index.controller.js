@@ -7,11 +7,11 @@ const app = express();
 const { Pool } = require('pg');
 
 const pool = new Pool({
-    host: 'localhost',
-    user: 'postgres',
-    password: '1234',
-    database: 'earthquakes',
-    port: '5432'
+    host: 'api.jkd.cl',
+    user: 'grupo_w',
+    password: '4AuXJAjd',
+    database: 'grupo_w_db',
+    port: '6432'
 });
 
 const getReportes = async (req, res) => {
